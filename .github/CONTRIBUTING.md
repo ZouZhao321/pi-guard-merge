@@ -1,52 +1,61 @@
-# 贡献指南
+# Contributing
 
-## 开发流程
+## Development workflow
 
-1. 创建特性分支：`git checkout -b feat/你的功能名`
-2. 提交代码，标题遵循下面的 Commit 规范
-3. 推送分支并创建 Pull Request
+1. Create a topic branch: `git checkout -b feat/your-change`
+2. Commit with the message format described below
+3. Push the branch and open a pull request
 
-## Commit 规范
+## Commit messages
 
-标题格式：`type(scope): 中文描述`，`scope` 可选。
+Subject format: `type(scope): 中文描述`. The description is written in Chinese; the scope is optional.
 
-| Type     | 说明     |
-| -------- | -------- |
-| feat     | 新功能   |
-| fix      | Bug 修复 |
-| refactor | 重构     |
-| test     | 测试相关 |
-| docs     | 文档变更 |
-| chore    | 杂项     |
-| perf     | 性能优化 |
+| Type     | Meaning                         |
+| -------- | ------------------------------- |
+| feat     | New feature                     |
+| fix      | Bug fix                         |
+| refactor | Refactoring, no behavior change |
+| test     | Tests                           |
+| docs     | Documentation                   |
+| chore    | Maintenance                     |
+| perf     | Performance                     |
 
-描述必须含中文。以 `Merge `、`Revert `、`fixup! `、`squash! `、`amend! ` 开头的标题直接放行。
+The description must contain Chinese characters. `scripts/check-commit-msg.py` enforces both the format and the type list; subjects starting with `Merge `, `Revert `, `fixup! `, `squash! ` or `amend! ` are passed through untouched.
 
-仓库带一个 `commit-msg` 钩子（`.pre-commit-config.yaml`），提交前按 `scripts/check-commit-msg.py` 校验标题。克隆后装一次：
+Install the hook once per clone so the check runs before every commit:
 
 ```bash
-python -m pip install --user pre-commit   # 已装可跳过；用 pipx 也行：pipx install pre-commit
+python -m pip install --user pre-commit   # skip if pre-commit is already installed
 pre-commit install --hook-type commit-msg
 ```
 
-## 提交前自检
+## Before you push
 
 ```bash
 npm ci
-npm run typecheck
-npm run lint
-npm test
-npm run format:check
-npm run check:pack
+npm run typecheck     # tsc --noEmit
+npm run lint          # eslint .
+npm test              # node scripts/smoke.mjs
+npm run format:check  # prettier --check src/ scripts/
+npm run check:pack    # assert the npm tarball contents
 ```
 
-同一套检查在 CI 里跑（`.github/workflows/ci.yml`），矩阵覆盖 ubuntu 与 windows、Node 22 与 24；另有 `gitleaks` 工作流扫描密钥。
+`npm test` is a static smoke check: it parses `package.json`, asserts that `license` is MIT and that every path in `pi.extensions` exists on disk. It does not load the pi runtime, so the registered handlers are not exercised here.
 
-## PR 要求
+`npm run check:pack` runs `npm pack --dry-run --json` and asserts that the entry declared in `pi.extensions`, `package.json`, `README.md`, `README.zh.md`, `LICENSE` and `CHANGELOG.md` are inside the tarball, and that `node_modules/`, `.github/`, `.husky/`, `tmp/`, `.worktrees/`, `docs/adr/`, `CONTEXT.md`, `HANDOFF.md` and `SPEC.md` are not.
 
-- 一个 PR 只做一件事，标题遵循同一套 Commit 规范
-- 说明改了什么、怎么验证的
+## Continuous integration
 
-## 问题反馈
+`.github/workflows/ci.yml` runs the same six commands on `ubuntu-latest` with Node 22 and 24 and on `windows-latest` with Node 22, plus a `commit-msg` job that validates the subjects of the pushed commits (it is skipped for dependabot). `.github/workflows/gitleaks.yml` scans the repository and the pushed commits for secrets. Pushing a `v*` tag triggers `.github/workflows/publish.yml`, which runs `prepublishOnly` and publishes to npm with provenance.
 
-用 [Issue Tracker](../issues) 提交问题或建议；安全问题按 [SECURITY.md](./SECURITY.md) 走仓库的 Security 页。
+## Pull requests
+
+- One logical change per pull request
+- Fill in every section of the pull request template
+- State what changed and how you verified it
+
+## Issues and security reports
+
+Use the [issue tracker](/issues) for bugs and feature requests. Report security problems through the repository's Security tab; see [SECURITY.md](./SECURITY.md).
+
+By contributing you agree that your changes are released under the MIT license, see [LICENSE](../LICENSE).
