@@ -3,8 +3,14 @@ import { readFileSync } from "node:fs";
 
 const manifest = JSON.parse(readFileSync("package.json", "utf8"));
 const entries = (manifest.pi?.extensions ?? []).map((path) => path.replace(/^\.\//, ""));
-// 本包没有 CHANGELOG.md，清单只列实际随包发布的文件
-const required = ["package.json", "README.md", "README.zh.md", "LICENSE", ...entries];
+const required = [
+	"package.json",
+	"README.md",
+	"README.zh.md",
+	"LICENSE",
+	"CHANGELOG.md",
+	...entries,
+];
 const forbidden = [
 	/(^|\/)(node_modules|\.github|\.husky|tmp|\.worktrees)\//,
 	/(^|\/)docs\/adr\//,
