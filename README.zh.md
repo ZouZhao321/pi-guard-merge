@@ -26,7 +26,7 @@ pi install ./guard-merge
 
 ## 做什么
 
-扩展入口是 `guard-merge.ts`，在 `package.json` 里由 `pi.extensions` 声明。它不注册工具，也不注册命令，只挂一个事件：
+扩展入口是 `src/guard-merge.ts`，在 `package.json` 里由 `pi.extensions` 声明。它不注册工具，也不注册命令，只挂一个事件：
 
 - `pi.on("tool_call", ...)` —— 检查每次 `bash` 工具调用，命中守卫规则时拦下。只处理 `bash` 调用，判定走 `isToolCallEventType("bash", event)`。
 
@@ -51,7 +51,7 @@ pi install ./guard-merge
 
 ## 配置
 
-没有配置文件，也没有环境变量。所有可调项都是 `guard-merge.ts` 里的常量：
+没有配置文件，也没有环境变量。所有可调项都是 `src/guard-merge.ts` 里的常量：
 
 - `TIMEOUT_MS`（`10_000`）—— 确认框等待多久后按拒绝处理；提示文案按 `TIMEOUT_MS / 1000` 换算成秒。
 - `GUARDED` —— 上表那些 `{ pattern, label }` 条目。按顺序对原始 `bash` 命令字符串做匹配，第一条命中生效。
@@ -65,8 +65,8 @@ pi install ./guard-merge
 ```bash
 npm install
 npm run typecheck     # tsc --noEmit
-npm run format        # prettier --write guard-merge.ts scripts/
-npm run format:check  # prettier --check guard-merge.ts scripts/
+npm run format        # prettier --write src/ scripts/
+npm run format:check  # prettier --check src/ scripts/
 npm test              # node scripts/smoke.mjs
 ```
 

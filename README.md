@@ -26,7 +26,7 @@ pi install ./guard-merge
 
 ## What it does
 
-The extension entry point is `guard-merge.ts`, declared in `package.json` as `pi.extensions`. It registers no tools and no commands. It hooks one event:
+The extension entry point is `src/guard-merge.ts`, declared in `package.json` as `pi.extensions`. It registers no tools and no commands. It hooks one event:
 
 - `pi.on("tool_call", ...)` — inspects every `bash` tool call and blocks the commands that match the guarded patterns. Only `bash` calls are considered, via `isToolCallEventType("bash", event)`.
 
@@ -51,7 +51,7 @@ This is a mechanism for interrupting silent actions, not a security boundary. Th
 
 ## Configuration
 
-There is no configuration file and no environment variable. Every knob is a constant in `guard-merge.ts`:
+There is no configuration file and no environment variable. Every knob is a constant in `src/guard-merge.ts`:
 
 - `TIMEOUT_MS` (`10_000`) — how long the confirmation dialog waits before it counts as a denial. The prompt text is derived from it as `TIMEOUT_MS / 1000` seconds.
 - `GUARDED` — the list of `{ pattern, label }` entries shown in the table above. Entries are tested in order against the raw `bash` command string, and the first match wins.
@@ -65,8 +65,8 @@ Requires Node.js >= 22.
 ```bash
 npm install
 npm run typecheck     # tsc --noEmit
-npm run format        # prettier --write guard-merge.ts scripts/
-npm run format:check  # prettier --check guard-merge.ts scripts/
+npm run format        # prettier --write src/ scripts/
+npm run format:check  # prettier --check src/ scripts/
 npm test              # node scripts/smoke.mjs
 ```
 
