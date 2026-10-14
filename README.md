@@ -1,5 +1,7 @@
 # pi-guard-merge
 
+[中文](./README.zh.md) | [English](./README.md)
+
 A pi extension that turns silent merge and trunk-push actions into an explicit confirmation step. Before a `bash` command that merges a PR, changes branch rules, or pushes to `main` / `master` runs, it asks you to approve it — and denial is the default when you do not answer.
 
 ## Install
