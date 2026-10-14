@@ -1,0 +1,76 @@
+name: Bug 报告
+description: 提交一个 Bug 报告
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 简要描述你遇到的问题
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 如何复现这个问题
+      placeholder: |
+        1. 在 pi 里执行 '...'
+        2. 期望弹出确认框 / 期望命中守卫
+        3. 出现错误 '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+      description: 你期望的正确行为是什么（命中 / 放行 / 拒绝）
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 实际发生了什么，确认框或 block 理由的原文
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: 运行模式
+      description: 出现问题的会话是交互式还是非交互式
+      options:
+        - 交互式（默认 UI，有确认框）
+        - 非交互式（pi -p / --mode json）
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本号
+      description: 你使用的 pi-guard-merge 版本或提交
+      placeholder: v0.1.0
+
+  - type: input
+    id: pi-version
+    attributes:
+      label: pi / omp 版本
+      description: 你运行的 coding agent 版本
+      placeholder: pi 0.84.x
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - 其他
+    validations:
+      required: true
