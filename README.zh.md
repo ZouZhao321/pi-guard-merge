@@ -24,14 +24,14 @@ pi install ./guard-merge
 
 受守卫的命令，以及扩展给每条规则用的弹框标题：
 
-| 命令 | 标题 |
-| --- | --- |
-| `gh pr merge ...` | `合并 PR` |
+| 命令                                                 | 标题                     |
+| ---------------------------------------------------- | ------------------------ |
+| `gh pr merge ...`                                    | `合并 PR`                |
 | `gh api .../merge`、`.../protection`、`.../rulesets` | `合并 PR 或改动分支规则` |
-| `git push` 未给分支名 | `推送（未指定分支）` |
-| `git push <remote>` 未给分支名 | `推送（未指定分支）` |
-| `git push ... main` 或 `git push ... master` | `推送主干分支` |
-| `git push ... --all`、`--mirror`、`--force` 或 `-f` | `推送全部分支或强制推送` |
+| `git push` 未给分支名                                | `推送（未指定分支）`     |
+| `git push <remote>` 未给分支名                       | `推送（未指定分支）`     |
+| `git push ... main` 或 `git push ... master`         | `推送主干分支`           |
+| `git push ... --all`、`--mirror`、`--force` 或 `-f`  | `推送全部分支或强制推送` |
 
 三种结果：
 
@@ -65,6 +65,10 @@ npm test              # node scripts/smoke.mjs
 `npm test` 跑冒烟检查：解析 `package.json`，断言 `license` 为 `MIT`，并断言 `pi.extensions` 列出的路径都真实存在。
 
 要在 pi 里试本地改动，重新跑 `pi install ./guard-merge`。
+
+## 贡献
+
+见 [.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md)；安全问题按 [.github/SECURITY.md](./.github/SECURITY.md) 从仓库的 Security 页报告。
 
 ## 许可证
 
