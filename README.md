@@ -24,14 +24,14 @@ The extension entry point is `guard-merge.ts`, declared in `package.json` as `pi
 
 Guarded commands, with the dialog label the extension uses for each one:
 
-| Command | Label |
-| --- | --- |
-| `gh pr merge ...` | `合并 PR` |
+| Command                                              | Label                    |
+| ---------------------------------------------------- | ------------------------ |
+| `gh pr merge ...`                                    | `合并 PR`                |
 | `gh api .../merge`, `.../protection`, `.../rulesets` | `合并 PR 或改动分支规则` |
-| `git push` with no branch argument | `推送（未指定分支）` |
-| `git push <remote>` with no branch argument | `推送（未指定分支）` |
-| `git push ... main` or `git push ... master` | `推送主干分支` |
-| `git push ... --all`, `--mirror`, `--force` or `-f` | `推送全部分支或强制推送` |
+| `git push` with no branch argument                   | `推送（未指定分支）`     |
+| `git push <remote>` with no branch argument          | `推送（未指定分支）`     |
+| `git push ... main` or `git push ... master`         | `推送主干分支`           |
+| `git push ... --all`, `--mirror`, `--force` or `-f`  | `推送全部分支或强制推送` |
 
 Three outcomes:
 
@@ -65,6 +65,10 @@ npm test              # node scripts/smoke.mjs
 `npm test` runs the smoke check: it parses `package.json`, asserts that `license` is `MIT`, and asserts that every path listed in `pi.extensions` exists on disk.
 
 To try a local change inside pi, rerun `pi install ./guard-merge`.
+
+## Contributing
+
+See [.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md). Report security problems through the repository's Security tab, as described in [.github/SECURITY.md](./.github/SECURITY.md).
 
 ## License
 
