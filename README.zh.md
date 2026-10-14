@@ -6,6 +6,14 @@
 
 ## 安装
 
+首选从 npm 安装已发布的包：
+
+```bash
+pi install npm:pi-guard-merge
+```
+
+也可以直接从 git 仓库安装：
+
 ```bash
 pi install git:github.com/ZouZhao321/pi-guard-merge
 ```

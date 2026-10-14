@@ -6,6 +6,14 @@ A pi extension that turns silent merge and trunk-push actions into an explicit c
 
 ## Install
 
+Install the published package from npm:
+
+```bash
+pi install npm:pi-guard-merge
+```
+
+Or install straight from the git repository:
+
 ```bash
 pi install git:github.com/ZouZhao321/pi-guard-merge
 ```
