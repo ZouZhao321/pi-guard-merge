@@ -1,0 +1,51 @@
+{
+  "name": "pi-guard-merge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pi extension: confirm or block unauthorized merge, branch-rule and trunk-push commands before they run.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "guard",
+    "merge",
+    "confirmation"
+  ],
+  "homepage": "https://github.com/ZouZhao321/pi-guard-merge#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZouZhao321/pi-guard-merge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZouZhao321/pi-guard-merge/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "pi": {
+    "extensions": [
+      "./guard-merge.ts"
+    ]
+  },
+  "files": [
+    "guard-merge.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write guard-merge.ts scripts/",
+    "format:check": "prettier --check guard-merge.ts scripts/",
+    "test": "node scripts/smoke.mjs"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.84.2",
+    "@types/node": "^22.0.0",
+    "prettier": "^3.4.0",
+    "typescript": "^5.7.0"
+  }
+}
