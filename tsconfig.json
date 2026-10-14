@@ -10,6 +10,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["guard-merge.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

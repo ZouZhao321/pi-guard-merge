@@ -27,11 +27,11 @@
   },
   "pi": {
     "extensions": [
-      "./guard-merge.ts"
+      "./src/guard-merge.ts"
     ]
   },
   "files": [
-    "guard-merge.ts",
+    "src",
     "README.md",
     "CHANGELOG.md",
     "LICENSE"
@@ -40,8 +40,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write guard-merge.ts scripts/",
-    "format:check": "prettier --check guard-merge.ts scripts/",
+    "format": "prettier --write src/ scripts/",
+    "format:check": "prettier --check src/ scripts/",
     "test": "node scripts/smoke.mjs",
     "check:pack": "node scripts/check-pack.mjs",
     "prepublishOnly": "npm run typecheck && npm run lint && npm test && npm run format:check && npm run check:pack"
